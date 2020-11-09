@@ -154,5 +154,3 @@ def skeletalDivision(input: str, arr, limit=None):
     run_time = round(time.perf_counter() - start_time, 1)
     print(f'*** {len(solutions)} solutions found in {run_time}s ***\n')
     return solutions
-
-pass
