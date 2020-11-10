@@ -1,5 +1,8 @@
 # Skeletal Division
 Skeletal Division Satisfiability Solver
+This program is a SAT solver of cryptarithmetic skeletal division puzzles. It determines whether or not a given puzzle is 
+satisfiable (if a solution exists). If the puzzle is deemed satisfiable, it will produce all possible solutions or
+a given number of solutions if limited by the user. 
 
 ## Installation
 On Eclipse:
