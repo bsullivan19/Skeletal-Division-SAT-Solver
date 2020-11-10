@@ -46,7 +46,7 @@ def skeletalDivision(input: str, arr, limit=None):
     complete.update(words.items())
     
     # Useful constants
-    dividen = initial[0]
+    dividend = initial[0]
     divisor = initial[1]
     ans = initial[2]
     
@@ -65,45 +65,45 @@ def skeletalDivision(input: str, arr, limit=None):
                              for w, v in words.items()]
     
     # Constraint: Remainder
-    remainder = dividen + ' % ' + divisor
+    remainder = dividend + ' % ' + divisor
     if remain != '':
-        # Constraint: the remainder must be equivalent to the dividen mod divisor
+        # Constraint: the remainder must be equivalent to the dividend mod divisor
         equRemain = remain + '== pow(10, ' + str(len(remain)) + ') * (' + remainder + ') / ' + divisor
         equations.append(equRemain)
     else:
         # Constraint: if there is no remainder the last value of the array has to be 0
         equRemain = arr[len(arr)-1] + ' == 0'
         equations.append(equRemain)
-        # Constraint: if there is no remainder the dividen divided by the divisor must
+        # Constraint: if there is no remainder the dividend divided by the divisor must
         # have a remainder of 0
         equNoRound = '(' + remainder + ') % 1 == 0'
         equations.append(equNoRound)
         # Constraint: product (controls rounding)
-        equProduct = divisor + ' * ' + ans + ' == ' + dividen
+        equProduct = divisor + ' * ' + ans + ' == ' + dividend
         equations.append(equProduct)
 
     # Constraint: problem as defined by the original input
-    equOriginal = dividen + ' / ' + divisor + ' - (' + dividen + ' / ' + divisor  + '%1) == ' + ans 
+    equOriginal = dividend + ' / ' + divisor + ' - (' + dividend + ' / ' + divisor  + '%1) == ' + ans 
     equations.append(equOriginal)
     
     # Constraint: Difference between divisor and first member of the array
     # equals the second member of the array
     shift = 10
-    powOfTen = len(dividen) - 1 - len(arr[0])
+    powOfTen = len(dividend) - 1 - len(arr[0])
     if len(arr[0]) == len(divisor): 
         powOfTen = powOfTen - 1
     if powOfTen < 0: 
         powOfTen = 0
-    if len(dividen) == len(ans): 
+    if len(dividend) == len(ans): 
         shift = 1
-    equDiffBase = '((' + dividen + '-(' + dividen + '%pow(10,' + str(powOfTen) + ')))/pow(10,'  + str(powOfTen) + '))-(' + arr[0] + '*' + str(shift) + ')==' + arr[1]
+    equDiffBase = '((' + dividend + '-(' + dividend + '%pow(10,' + str(powOfTen) + ')))/pow(10,'  + str(powOfTen) + '))-(' + arr[0] + '*' + str(shift) + ')==' + arr[1]
     equations.append(equDiffBase) 
     
     # Constraint: check difference of long division steps 
     # loop before decimal
     i = 1
-    while i < len(arr)-2 and i < len(dividen):
-        if i+2 >= len(dividen)-1:
+    while i < len(arr)-2 and i < len(dividend):
+        if i+2 >= len(dividend)-1:
             x = list("".join(arr[i+2]))
             equDiff = arr[i] + ' - ' + arr[i+1] + ' == ' + x[0]
         else:
@@ -118,7 +118,7 @@ def skeletalDivision(input: str, arr, limit=None):
             equations.append(equDiff)
             i = i + 2
             
-    # Constraint: dividen times answer equals the corresponding subtrahend
+    # Constraint: dividend times answer equals the corresponding subtrahend
     z = 0
     # Loop over whole number portion of answer
     for x in list("".join(ans)):
